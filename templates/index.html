@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Available Beds Forecasting</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
 
+
+<body>
+ <div class="login">
+	<h1 align="center">Time Series Forecasting</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post" align="center">
+    	<input type="text" name="days" placeholder="days" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {% if data %}
+    <table align="center" border="1">
+        <thead>
+            <th align="center"> Date </th>
+            <th align="center">Available beds</th>
+           
+        </thead>
+        <tbody>
+            {%for item in range(0,day)%}
+                <tr>
+                    <td align="center" width="150">{{dates[item]}}</td>
+                    <td align="center" width="150">{{beds[item]}}</td>
+                    
+                </tr>
+                
+            {%endfor%} 
+        </tbody>
+
+    
+    </table> 
+   {% endif %}
+    
+</div>
+
+
+</body>
+</html>
